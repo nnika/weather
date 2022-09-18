@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+<div class="container">
+	<div class="row">
+
+
+		<div class="col" th:if="${venue}">
+
+			<h2>Forecast</h2>
+			Venue: <span class="user" th:text="${venue.name}"></span> <br/>
+			Location: <span class="user" th:text="${venue.location.city}"></span>,<span class="user" th:text="${venue.location.state}"></span>
+			<p>
+					<span class="user"
+						  th:text="${forecast.detailedForecast}"></span>
+		</div>
+		<div class="col" th:unless="${venue}">
+			<h2>Forecast</h2>
+			Venue <span th:text="${venueID}"></span> not found.
+		</div>
+	</div>
+</div>
+
+	<!-- END section -->
+
+
+</body>
+</html>

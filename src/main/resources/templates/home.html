@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>Venue Search Form</h2>
+            <form action="#" th:action="@{/findvenue}" th:object="${venue}" method="post">
+                <label for="id">Venue ID</label> <input type="text" th:field="*{formId}" id="formId" placeholder="venue id" th:required="required">
+                <button type="submit" class="btn btn-primary">Find Venue</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h2>Schedule Search Form</h2>
+            <form action="#" th:action="@{/findschedule}" th:object="${schedule}" method="post">
+                <label for="id">Team ID</label> <input type="text"  th:field="*{teamIds}" id="ids" placeholder="id" th:required="required">
+                <label for="id">Date</label> <input type="text" th:field="*{startDate}" id="startDate" placeholder="date" th:required="required">
+                <button type="submit" class="btn btn-primary">Find Team</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

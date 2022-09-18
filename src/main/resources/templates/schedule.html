@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col" th:if="${schedule}">
+
+            <table class="table" th:if="${not #lists.isEmpty(schedule.gameDates)}">
+                <th:block th:each="gameDate, iter : ${schedule.gameDates}">
+                    <tr>
+                        <th scope="col">Number:</th>
+                        <td class="col-1"><span th:text="${iter.index + 1}"></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Date: </th>
+                        <td class="col-1"><span th:text="${gameDate.date}"></span></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Teams: </th>
+                        <td class="col-1"><span th:each="game : ${gameDate.games}"> <span th:text="${game.teams.away.team.name}"></span> @ <span  th:text="${game.teams.home.team.name}"></span> </span></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Venue: </th>
+                        <td class="col-1"><span th:each="game : ${gameDate.games}"> <span th:text="${game.venue.name}"></span><span th:text="${game.venue.location.city}"></span>, <span th:text="${game.venue.location.state}">,</span> </span></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Forecast: </th>
+                        <td class="col-1"><span th:each="game : ${gameDate.games}"> <span th:text="${game.venue.forecastDescription}"></span> </span></td>
+                    </tr>
+                </th:block>
+            </table>
+            <div th:unless="${not #lists.isEmpty(schedule.gameDates)}">
+                Invalid request. Weather forecasts do not go beyond one week.
+            </div>
+        </div>
+        <div class="col" th:unless="${schedule}">
+            Team not found.
+        </div>
+        <div class="col" th:if="${invalidDate}">
+            Date is not valid. <span style="color:red;" th:text="${invalidDate}"></span>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
